@@ -23,19 +23,18 @@
 ## Created: 2018-10-11
 
 # Lance l'algo kmean pour un fichier donné avec des points centraux aléatoires
-function kmean_file_random (k)
-  load td2_d3.txt -ascii
+function kmean_file_random (tab, k)
   m = eye(2);
-  dim = size(td2_d3)(2);
+  dim = size(tab)(2);
   ## Calcul de points centraux aléatoires
   g = zeros(2,k);
   for i = 1:k
     val = randi(dim);
-    while ismember(td2_d3(:,val),g(:,i))
+    while ismember(tab(:,val),g(:,i))
       val = randi(dim);
     end
-    g(:,i) = td2_d3(:,val);
+    g(:,i) = tab(:,val);
   end
-  [clas,g2] = coalescence(td2_d3,k,m,g);
-  affiche_classe(td2_d3,clas);
+  [clas,g2] = coalescence(tab,k,m,g);
+  affiche_classe(tab,clas);
 end

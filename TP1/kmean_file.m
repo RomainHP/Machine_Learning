@@ -23,11 +23,10 @@
 ## Created: 2018-10-15
 
 # Lance l'algo kmean pour un fichier donné
-function kmean_file (k)
-  load td2_d3.txt -ascii
+function kmean_file (tab, k)
   m = eye(2);
   ## Calcul des points centraux
-  g = initialize_kmean(td2_d3,k,m);
-  [clas,g2] = coalescence(td2_d3,k,m,g);
-  affiche_classe(td2_d3,clas);
+  g = initialize_kmean(tab,k,m);
+  [clas,g2] = coalescence(tab,k,m,g);
+  affiche_classe(tab,clas);
 end

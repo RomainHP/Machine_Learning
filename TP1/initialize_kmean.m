@@ -42,16 +42,14 @@ function [g] = initialize_kmean (points, k, M)
         end  
       end
       ## La norme minimale correspond au poids de ce point (pour etre le nouveau centre)
-      poids(i) = norm_min;
+      poids(j) = norm_min;
     end
     ## En fonction du poids, on choisit un point
     tab = zeros(1,dim);
     for j = 1:dim
       tab(j) = j;
     end
-    ## TODO corriger R
     R = randsample(tab, 1, true, poids);
-    disp(R);
     g(:,i) = points(:,R);
   end
 endfunction
