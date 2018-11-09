@@ -31,11 +31,11 @@ function [res] = moyennes (points)
     if (cpt > 50)
       rang = rang + 1;
       cpt = 0;
-    end
+    endif
     res(:,rang) = res(:,rang) + points(:,i);
     cpt = cpt + 1;
-  end
+  endfor
   for j = 1:3
     res(:,j) = res(:,j)/50;
-  end
+  endfor
 endfunction

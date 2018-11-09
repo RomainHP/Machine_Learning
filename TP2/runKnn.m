@@ -26,7 +26,7 @@ function runKnn (test,x,k,clasapp)
 
  oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
  
- class = decision_knn(test,oracle,k,x);
+ class = decision_knn(test,oracle,k,x,eye(2));
  affiche_classe(x,class);
  nb_error = erreur_classif(clasapp,class);
  disp(nb_error);
