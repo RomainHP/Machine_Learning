@@ -31,7 +31,7 @@ function [clas] = decision_bayes (m, sigma, p, x)
     for j = 1:C(2)
       sig = sigma(:,:,j);
       ## Algorithme de décision (approche gaussienne)
-      val = -0.5*(x(i)-m(j))'*sig(:,2)*(x(i)-m(j))-0.5*log(det(sig(:,1)))+log(p(m));
+      val = -0.5*(x(:,i)-m(:,j))'*sig(:,2)*(x(:,i)-m(:,j))-0.5*log(det(sig(:,1)))+log(p(m(:,j)));
       if (val>max)
         max = val;
         z=j;

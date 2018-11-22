@@ -14,22 +14,18 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {Function File} {@var{retval} =} covariance (@var{input1}, @var{input2})
+## @deftypefn {Function File} {@var{retval} =} runBayes (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
-## Created: 2018-11-08
+## Author: CHARPENTIER ROMAIN <rcharpen@BE11-19-L>
+## Created: 2018-11-22
 
-function [res] = covariance (points, moyennes, j1, j2)
-  res = -1;
-  n = size(points);
-  n2 = size(moyennes);
-  if (j1<n(2) && j1<n2(2) && j2<n(2) && j2<n2(2))
-    for i = 1:n(2)
-      res = res + (points(j1,i) - moyennes(j1)) * (points(j2,i) - moyennes(j2));
-    end
-    res = res / n(2);
-  end
+function [res] = runBayes (x, test)
+  C = 3;
+  sigma = zeros(2,2,C);
+  moyennes = moyennes(test);
+  probabilites = probabilite(x, moyennes, eye(2));
+  res = decision_bayes(moyennes, sigma, probabilites, x);
 endfunction

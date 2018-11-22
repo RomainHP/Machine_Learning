@@ -25,8 +25,8 @@
 function [res] = probabilite (points, moyennes, M)
   dim = size(points);
   dim2 = size(moyennes);
-  res = zeros(dim(2));
-  tab = zeros(dim2(2));
+  res = zeros(1,dim(2));
+  tab = zeros(1,dim2(2));
   total = 0;
   for j = 1:dim(2)
     for i = 1:dim2(2)
@@ -37,7 +37,6 @@ function [res] = probabilite (points, moyennes, M)
     ## Calcul de la probabilité
     for i = 1:dim2(2)
       tab(i) = tab(i) / total;
-      #disp(tab(i));
     endfor
   endfor
 endfunction
