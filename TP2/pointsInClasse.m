@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} matrix_variance (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} pointsInClasse (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -22,27 +22,20 @@
 ## Author: Romain <romain@Romain-PC>
 ## Created: 2018-11-23
 
-## Calcul de des matrices variance/covariance pour chaque classe (retour dans hypermatrix)
-function [res] = matrix_variance (test, moyennes, oracle, C)
-  res = zeros(2,2,C);
-  rang = 1;
+## Retourne le tableau des points correspondant à la classe
+function [res] = pointsInClasse (points, oracle, classe)
+  nb = 0;
+  for i = 1:size(oracle)(2)
+    if (oracle(:,i)==classe)
+      nb = nb + 1;
+    endif
+  endfor
+  res = zeros(size(points)(1),nb);
   cpt = 1;
-  ## Pour la classe i
-  for i = 1:C
-    cpt=1;
-    points = pointsInClasse(test,oracle,i);
-    ## Pour la ligne j
-    for j = 1:2
-      ## Pour la colonne k
-      for k = 1:2
-        if (j==k)
-          ## Variance
-          res(k,j,i) = variance(points,moyennes,j,i);
-        else
-          ## Covariance
-          res(k,j,i) = covariance(points,moyennes,1,2,i);
-        endif
-      endfor
-    endfor
+  for i = 1:size(oracle)(2)
+    if (oracle(:,i)==classe)
+      res(:,cpt) = points(:,i);
+      cpt = cpt + 1;
+    endif
   endfor
 endfunction
