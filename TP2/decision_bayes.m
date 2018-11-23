@@ -22,21 +22,25 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
+## Algorithme de decision Bayes
 function [clas] = decision_bayes (m, sigma, p, x)
   C = size(m);
   n = size(x);
+  test = 0; # pour prendre la valeur de la premiere boucle
   max = 0;
   z=0;
   for i = 1:n(2)
+    test=0;
     for j = 1:C(2)
       sig = sigma(:,:,j);
       ## Algorithme de décision (approche gaussienne)
-      val = -0.5*(x(:,i)-m(:,j))'*sig(:,2)*(x(:,i)-m(:,j))-0.5*log(det(sig(:,1)))+log(p(m(:,j)));
-      if (val>max)
+      val = -0.5*(x(:,i)-m(:,j))'*inv(sig)*(x(:,i)-m(:,j))-0.5*log(det(sig))+log(p(j));
+      if (test==0 || val>max)
+        test=1;
         max = val;
         z=j;
       end  
     end
-    clas(i) = j;
+    clas(i) = z;
   end
 endfunction

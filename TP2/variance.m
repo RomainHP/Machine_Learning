@@ -22,13 +22,14 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
-function [res] = variance (points, moyennes, j)
-  res = -1;
+## Calcul de la variance
+function [res] = variance (points, moyennes, j, classe)
+  res = 0;
   n = size(points);
   n2 = size(moyennes);
-  if (j<n(2) && j<n2(2))
+  if (j<n(2) && j<n2(2) && j>0)
     for i = 1:n(2)
-      res = res + (points(j,i) - moyennes(j)) * (points(j,i) - moyennes(j));
+      res = res + (points(j,i) - moyennes(j,classe)) * (points(j,i) - moyennes(j,classe));
     end
     res = res / n(2);
   end  

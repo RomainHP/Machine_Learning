@@ -22,13 +22,14 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
-function [res] = covariance (points, moyennes, j1, j2)
-  res = -1;
+## Calcul de la covariance
+function [res] = covariance (points, moyennes, j1, j2, classe)
+  res = 0;
   n = size(points);
   n2 = size(moyennes);
-  if (j1<n(2) && j1<n2(2) && j2<n(2) && j2<n2(2))
+  if (j1<n(2) && j1<n2(2) && j2<n(2) && j2<n2(2) && j1>0 && j2>0)
     for i = 1:n(2)
-      res = res + (points(j1,i) - moyennes(j1)) * (points(j2,i) - moyennes(j2));
+      res = res + (points(j1,i) - moyennes(j1,classe)) * (points(j2,i) - moyennes(j2,classe));
     end
     res = res / n(2);
   end

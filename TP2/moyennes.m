@@ -22,13 +22,13 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
-function [res] = moyennes (points)
+function [res] = moyennes (points, nbOracle, nbClasses)
   dim = size(points);
-  res = zeros(2,3);
+  res = zeros(2,nbClasses);
   cpt = 1;
   rang = 1;
   for i = 1:dim(2)
-    if (cpt > 50)
+    if (cpt > nbOracle)
       rang = rang + 1;
       cpt = 0;
     endif
@@ -36,6 +36,6 @@ function [res] = moyennes (points)
     cpt = cpt + 1;
   endfor
   for j = 1:3
-    res(:,j) = res(:,j)/50;
+    res(:,j) = res(:,j)/nbOracle;
   endfor
 endfunction

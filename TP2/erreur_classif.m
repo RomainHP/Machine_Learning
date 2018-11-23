@@ -1,4 +1,6 @@
 
+## Copyright (C) 2018 CHARPENTIER ROMAIN
+
 ## 
 ## This program is free software; you can redistribute it and/or modify it
 ## under the terms of the GNU General Public License as published by
@@ -20,27 +22,27 @@
 ## @end deftypefn
 
 
-## Author: THIELEMANN MORGANE <mthielem@BE18-04-L>
+## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
 function min_diff=erreur_classif(clas,clas2)
-clas=clas(:)';
-clas2=clas2(:)';
-nbre_classe=max(clas2);
-n=length(clas);
+  clas=clas(:)';
+  clas2=clas2(:)';
+  nbre_classe=max(clas2);
+  n=length(clas);
 
-p=perms(1:nbre_classe);
-min_diff=inf;
+  p=perms(1:nbre_classe);
+  min_diff=inf;
 
 
-for b=1:size(p,1),
-   clas_tmp=zeros(1,n);
-   for bb=1:nbre_classe,
-      clas_tmp=clas_tmp+(clas2==bb)*p(b,bb);
-   end;
-   mdiff=sum(clas_tmp~=clas);
-   if mdiff<min_diff
-      min_diff=mdiff;
-   end;
-end;
+  for b=1:size(p,1),
+     clas_tmp=zeros(1,n);
+     for bb=1:nbre_classe,
+        clas_tmp=clas_tmp+(clas2==bb)*p(b,bb);
+     end;
+     mdiff=sum(clas_tmp~=clas);
+     if mdiff<min_diff
+        min_diff=mdiff;
+     end;
+  end;
 
