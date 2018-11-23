@@ -31,13 +31,12 @@ function [clas] = decision_knn (test,classe_origine,k,nbClass,x,m)
   #on remplit la matrice des distances
   for i = 1:dimTest(2)
      for j = 1:dimX(2)
-        norm(i,j) = (x(:,j)-test(:,i))'*m*(x(:,1)-x(:,i));
+        norm(i,j) = (x(:,j)-test(:,i))'*m*(x(:,j)-test(:,i));
      endfor
   endfor
   
   #on trie la matrice norm pour obtenir facilement les k plus proche voisins
   [sortNorm,index] = sort(norm);
-  
   
   #sortNorm est le nouveau tableau trie
   #index indique comment on ete rearange les valeurs
@@ -50,7 +49,6 @@ function [clas] = decision_knn (test,classe_origine,k,nbClass,x,m)
       classNeighboor(l,z) = classe_origine(index(l,z));
     endfor
   endfor
-  disp(classNeighboor);
   #On va regarder sur les k plus proche voisins quelle classe est majoritaire
   
   classTest = zeros(nbClass,dimX(2));
