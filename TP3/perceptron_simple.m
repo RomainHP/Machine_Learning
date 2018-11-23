@@ -20,15 +20,15 @@
 ## @seealso{}
 ## @end deftypefn
 
-#y => scalaire correspondant à la sortie du neurone
-#x => entrée du neurone _ Vecteur a 2 lignes
+#y => scalaire correspondant ï¿½ la sortie du neurone
+#x => entrï¿½e du neurone _ Vecteur a 2 lignes
 #w => poids synaptiques du neurone _ Vecteur a 3 ligne;
 # premiere ligne correspond au seuil
 #active => fonction d'activation utilisee; voir sujet
 
 function [y] = perceptron_simple (x,w,active)
-  entree = w(2)*x(1) + w(3)*x(1)+w(1);
-  if(active ==0)
+  entree = w(2)*x(2) + w(3)*x(3)+ w(1);
+  if(active == 0)
     y=sign(entree);
   endif
 endfunction

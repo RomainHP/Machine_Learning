@@ -25,5 +25,20 @@
 #yd => yd(i) indique la reponse desiree pour x(:,i). _ vecteur 1 ligne et n+1 ou n-1 colonnes 
 
 function [w]= apprentissage_simple (x,yd)
-
+  ## Les poids synaptiques sont initialisés aléatoirement
+  w = zeros(3);
+  for j = 1:3
+    w(j) = randint(10);
+  endfor
+  ## On regarde pour chaque point si le programme trouve le bon résultat ou non
+  for i = 1:size(x)(2)
+    y = perceptron_simple(x(:,i),w,0);
+    if (y==yd(:,i))
+      ## Bon résultat
+      
+    else
+      ## Mauvais résultat
+      
+    endif
+  endfor
 endfunction

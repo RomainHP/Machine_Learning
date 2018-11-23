@@ -28,5 +28,4 @@ function res = runPerceptronLogique ()
   w = [-0.5,1.0,1.0];
   active = 0;
   res = perceptron_simple(x,w,active);
-
 endfunction
