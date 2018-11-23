@@ -22,11 +22,15 @@
 ## Author: THIELEMANN MORGANE <mthielem@BE18-04-L>
 ## Created: 2018-11-08
 
+#test => données de l'apprentissage 
+#x => x données à classer
+#k => nombre de voisins à prendre en compte
+#classe des données d'apprentissage
 function runKnn (test,x,k,clasapp)
 
  oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
  
- class = decision_knn(test,oracle,k,x,eye(2));
+ class = decision_knn(test,oracle,k,3,x,eye(2));
  affiche_classe(x,class);
  nb_error = erreur_classif(clasapp,class);
  disp(nb_error);
