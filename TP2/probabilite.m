@@ -22,21 +22,11 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
-function [res] = probabilite (points, moyennes, M)
-  dim = size(points);
-  dim2 = size(moyennes);
-  res = zeros(1,dim(2));
-  tab = zeros(1,dim2(2));
-  total = 0;
-  for j = 1:dim(2)
-    for i = 1:dim2(2)
-      distance = (points(:,j)-moyennes(:,i))'*M*(points(:,j)-moyennes(:,i));
-      tab(i) = distance;
-      total = total + distance;
-    endfor
-    ## Calcul de la probabilité
-    for i = 1:dim2(2)
-      tab(i) = tab(i) / total;
-    endfor
+## Calcul de la probabilite a priori de chaque classe
+function [res] = probabilite (points, nbOracle, nbClasses)
+  nb = size(points)(2);
+  res = zeros(nbClasses);
+  for j = 1:nbClasses
+    res(j) = nbOracle / nb;
   endfor
 endfunction
