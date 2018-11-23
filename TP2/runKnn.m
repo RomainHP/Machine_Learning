@@ -28,7 +28,7 @@
 #classe des données d'apprentissage
 function runKnn (test,x,k,clasapp,oracle)
 
- oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
+ #oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
  
  class = decision_knn(test,oracle,k,3,x,eye(2));
  affiche_classe(x,class);
