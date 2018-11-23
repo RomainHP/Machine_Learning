@@ -24,9 +24,9 @@
 ## Created: 2018-11-23
 
 function res = runPerceptronLogique ()
-  x = [1.0,0.0,0.0];
+  x = [0.0,0.0];
   w = [-0.5,1.0,1.0];
   active = 0;
-  res = perceptron_simple(x,w,active);
+  disp(perceptron_simple(x,w,active));
 
 endfunction

@@ -27,7 +27,7 @@
 #active => fonction d'activation utilisee; voir sujet
 
 function [y] = perceptron_simple (x,w,active)
-  entree = w(2)*x(1) + w(3)*x(1)+w(1);
+  entree = w(2)*x(1) + w(3)*x(2)+w(1);
   if(active ==0)
     y=sign(entree);
   endif
