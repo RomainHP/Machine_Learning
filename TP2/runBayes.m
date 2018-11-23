@@ -22,11 +22,11 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE11-19-L>
 ## Created: 2018-11-22
 
-function [res] = runBayes (x, test, nbOracle, nbClasses)
+function [res] = runBayes (x, test, oracle, nbClasses)
   ## Phase d'entrainement
-  moyennes = moyennes(test,nbOracle,nbClasses);
-  probabilites = probabilite(test, nbOracle, nbClasses);
-  sigma = matrix_variance(test, moyennes, nbOracle, nbClasses);
+  moyennes = moyennes(test,oracle,nbClasses);
+  probabilites = probabilite(test, oracle, nbClasses);
+  sigma = matrix_variance(test, moyennes, oracle, nbClasses);
   ## Lancement de l'algo
   res = decision_bayes(moyennes, sigma, probabilites, x);
 endfunction

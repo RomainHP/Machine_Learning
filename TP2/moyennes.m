@@ -22,20 +22,18 @@
 ## Author: CHARPENTIER ROMAIN <rcharpen@BE18-03-L>
 ## Created: 2018-11-08
 
-function [res] = moyennes (points, nbOracle, nbClasses)
+function [res] = moyennes (points, oracle, nbClasses)
   dim = size(points);
   res = zeros(2,nbClasses);
+  nb = zeros(nbClasses); ## nombre de points pour chaque classe
   cpt = 1;
   rang = 1;
   for i = 1:dim(2)
-    if (cpt > nbOracle)
-      rang = rang + 1;
-      cpt = 0;
-    endif
+    rang = oracle(i);
+    nb(rang) = nb(rang) + 1;
     res(:,rang) = res(:,rang) + points(:,i);
-    cpt = cpt + 1;
   endfor
   for j = 1:3
-    res(:,j) = res(:,j)/nbOracle;
+    res(:,j) = res(:,j)/nb(j);
   endfor
 endfunction

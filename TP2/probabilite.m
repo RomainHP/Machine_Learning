@@ -23,10 +23,13 @@
 ## Created: 2018-11-08
 
 ## Calcul de la probabilite a priori de chaque classe
-function [res] = probabilite (points, nbOracle, nbClasses)
+function [res] = probabilite (points, oracle, nbClasses)
   nb = size(points)(2);
   res = zeros(nbClasses);
-  for j = 1:nbClasses
-    res(j) = nbOracle / nb;
+  for j = 1:nb
+    res(oracle(j)) = res(oracle(j)) + 1;
+  endfor
+  for i = 1:nbClasses
+    res(i) = res(i) / nb;
   endfor
 endfunction
