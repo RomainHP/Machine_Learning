@@ -26,7 +26,7 @@
 #x => x données à classer
 #k => nombre de voisins à prendre en compte
 #classe des données d'apprentissage
-function runKnn (test,x,k,clasapp)
+function runKnn (test,x,k,clasapp,oracle)
 
  oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
  
