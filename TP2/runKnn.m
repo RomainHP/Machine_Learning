@@ -22,10 +22,10 @@
 ## Author: THIELEMANN MORGANE <mthielem@BE18-04-L>
 ## Created: 2018-11-08
 
-#test => données de l'apprentissage 
-#x => x données à classer
-#k => nombre de voisins à prendre en compte
-#classe des données d'apprentissage
+#test => donees de l'apprentissage 
+#x => x donnees a classer
+#k => nombre de voisins a prendre en compte
+#classe des donnees d'apprentissage
 function runKnn (test,x,k,clasapp,oracle)
 
  #oracle =  [ones(1,50) ones(1,50)*2 ones(1,50)*3];
