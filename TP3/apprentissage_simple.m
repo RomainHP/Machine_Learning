@@ -26,19 +26,29 @@
 
 function [w]= apprentissage_simple (x,yd)
   ## Les poids synaptiques sont initialisés aléatoirement
-  w = zeros(3);
+  oldW = zeros(1,3);
   for j = 1:3
-    w(j) = randint(10);
+    oldW(j) = randi(10);
   endfor
-  ## On regarde pour chaque point si le programme trouve le bon résultat ou non
+  w = oldW;
+  compteurOk = 0;
+  ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,0);
+    y = perceptron_simple(x(:,i),oldW,0);
     if (y==yd(:,i))
-      ## Bon résultat
-      
+      ## Bon resultat
+      compteurOk = compteurOk + 1;
     else
-      ## Mauvais résultat
-      
+      ## Mauvais resultat
+      if (y>yd(:,i))
+        w(1) = w(1) + 1;
+      else
+        w(2) = w(2) + 1;
+      endif
     endif
   endfor
+  ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
+  if (compteurOk != size(x)(2))
+    w = apprentissage_simple_bis(x, yd, w, 99);
+  endif
 endfunction
