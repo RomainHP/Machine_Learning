@@ -1,7 +1,0 @@
-KNN : 
-- https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
-- https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#/media/File:KnnClassification.svg
-
-Naive Bayes :
-- https://fr.wikipedia.org/wiki/Classification_na%C3%AFve_bay%C3%A9sienne
-- https://en.wikipedia.org/wiki/Naive_Bayes_classifier#/media/File:Kernel_Machine.svg
