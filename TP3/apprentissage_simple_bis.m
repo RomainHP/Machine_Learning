@@ -35,15 +35,12 @@ function [w] = apprentissage_simple_bis (x, yd, oldW, cpt)
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      if (y>yd(:,i))
-        w(1) = w(1) + 1;
-      else
-        w(2) = w(2) + 1;
-      endif
+      w = w + 0.5*(yd(:,i)-y)*[1 x(1,i) x(2,i)];
     endif
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0
   if (compteurOk != size(x)(2) && cpt>0)
+    #plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
     w = apprentissage_simple_bis(x, yd, w, cpt-1);
   endif
 endfunction

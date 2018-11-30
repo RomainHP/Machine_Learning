@@ -20,8 +20,8 @@
 ## @seealso{}
 ## @end deftypefn
 
-#y => scalaire correspondant � la sortie du neurone
-#x => entr�e du neurone _ Vecteur a 2 lignes
+#y => scalaire correspondant a la sortie du neurone
+#x => entree du neurone _ Vecteur a 2 lignes
 #w => poids synaptiques du neurone _ Vecteur a 3 ligne;
 # premiere ligne correspond au seuil
 #active => fonction d'activation utilisee; voir sujet

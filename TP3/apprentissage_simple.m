@@ -25,6 +25,8 @@
 #yd => yd(i) indique la reponse desiree pour x(:,i). _ vecteur 1 ligne et n+1 ou n-1 colonnes 
 
 function [w]= apprentissage_simple (x,yd)
+  clf();
+  hold on;
   ## Les poids synaptiques sont initialisés aléatoirement
   oldW = zeros(1,3);
   for j = 1:3
@@ -32,23 +34,22 @@ function [w]= apprentissage_simple (x,yd)
   endfor
   w = oldW;
   compteurOk = 0;
+  coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
+    plot(x(1,i),x(2,i),coul(yd(:,i),:));
     y = perceptron_simple(x(:,i),oldW,0);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      if (y>yd(:,i))
-        w(1) = w(1) + 1;
-      else
-        w(2) = w(2) + 1;
-      endif
+      w = w + 0.5*(yd(:,i)-y)*[1 x(1,i) x(2,i)];
     endif
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
   if (compteurOk != size(x)(2))
+    #plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
     w = apprentissage_simple_bis(x, yd, w, 99);
   endif
 endfunction
