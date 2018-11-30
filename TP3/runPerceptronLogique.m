@@ -23,9 +23,19 @@
 ## Author: morga <morga@MSI>
 ## Created: 2018-11-23
 
-function res = runPerceptronLogique ()
-  x = [0.0,0.0];
-  w = [-0.5,1.0,1.0];
+function runPerceptronLogique ()
+  clf();
+  hold on;
+  x = [0.0 0.0 1.0 1.0 0.5 0.4 0.3 0.7 0.8 0.5; 0.0 1.0 0.0 1.0 1.0 0.5 0.2 0.6 0.8 0.5];
+  w = [-0.5 1.0 1.0];
   active = 0;
-  res = perceptron_simple(x,w,active);
+  for i=1:size(x)(2) 
+    res = perceptron_simple(x(:,i),w,active);
+    if (res==-1)
+      plot(x(1,i),x(2,i),'rx');
+    else
+      plot(x(1,i),x(2,i),'bx');
+    endif
+  endfor
+  plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
 endfunction

@@ -14,32 +14,29 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} apprentissage_simple_bis (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} apprentissage_widrow_bis (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Romain <romain@Romain-PC>
-## Created: 2018-11-26
+## Created: 2018-11-30
 
-## Meme algo mais le poids des synapses vient de l'etat precedent et ajout d'un compteurOk
-## On s'arrete si tous les resultats sont ok ou si on a deja fait tourne l'algo cpt fois
-function [w] = apprentissage_simple_bis (x, yd, w, cpt)
+function [w] = apprentissage_widrow_bis (x, yd, w, cpt)
   compteurOk = 0;
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,0);
+    y = perceptron_simple(x(:,i),w,1);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      w = w + 0.1*(yd(:,i)-y)*[1 x(1,i) x(2,i)];
+      w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
     endif
   endfor
-  plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0
   if (compteurOk != size(x)(2) && cpt>0)
-    w = apprentissage_simple_bis(x, yd, w, cpt-1);
+    w = apprentissage_widrow_bis(x, yd, w, cpt-1);
   endif
 endfunction

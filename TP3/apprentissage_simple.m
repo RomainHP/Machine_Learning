@@ -28,28 +28,27 @@ function [w]= apprentissage_simple (x,yd)
   clf();
   hold on;
   ## Les poids synaptiques sont initialisés aléatoirement
-  oldW = zeros(1,3);
+  w = zeros(1,3);
   for j = 1:3
-    oldW(j) = randi(10);
+    w(j) = randi(5);
   endfor
-  w = oldW;
   compteurOk = 0;
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    plot(x(1,i),x(2,i),coul(yd(:,i),:));
-    y = perceptron_simple(x(:,i),oldW,0);
+    plot(x(1,i),x(2,i),coul(yd(:,i)+2,:));
+    y = perceptron_simple(x(:,i),w,0);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      w = w + 0.5*(yd(:,i)-y)*[1 x(1,i) x(2,i)];
+      w = w + 0.1*(yd(:,i)-y)*[1 x(1,i) x(2,i)];
     endif
   endfor
+  plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
   if (compteurOk != size(x)(2))
-    #plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
     w = apprentissage_simple_bis(x, yd, w, 99);
   endif
 endfunction

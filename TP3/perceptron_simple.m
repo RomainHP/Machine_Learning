@@ -29,6 +29,12 @@
 function [y] = perceptron_simple (x,w,active)
   entree = w(2)*x(1) + w(3)*x(2)+ w(1);
   if(active == 0)
-    y=sign(entree);
+    y = sign(entree);
+  else
+    if (active == 1)
+      y = tanh(entree);
+    else
+      y = 1 / (1 + exp(-entree));
+    endif
   endif
 endfunction
