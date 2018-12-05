@@ -26,7 +26,7 @@ function [w] = apprentissage_widrow (x, yd)
   ## Les poids synaptiques sont initialisés aléatoirement
   w = zeros(1,3);
   for j = 1:3
-    w(j) = randi(5);
+    w(j) = rand(1);
   endfor
   compteurOk = 0;
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];

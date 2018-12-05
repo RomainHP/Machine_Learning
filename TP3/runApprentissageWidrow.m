@@ -23,19 +23,33 @@
 ## Created: 2018-11-30
 
 function runApprentissageWidrow (x)
+  ## FIGURE 1
+  figure(1);
   clf();
   hold on;
-  xlim([-2 2]);
-  ylim([-2 2]);
   oracle = [ones(1,25)*(-1) ones(1,25)];
   active = 1;
-  tab = [rand(2,5)-1 ; rand(2,5)-1];
+  tab = [rand(4,5)-2 ; rand(4,5)-2];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
+  title('Apprentissage avec Widrow');
   ## Poids des synapses apres apprentissage
   w = apprentissage_widrow(x, oracle);
   ## Droite separatrice
   plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
+  for i = 1:size(x)(2)
+    y = perceptron_simple(x(:,i),w,active); 
+    ## Point avec couleur en fonction de la classe
+    plot(x(1,i),x(2,i),coul(oracle(i)+2),'MarkerSize',20);
+  endfor
+  ## FIGURE 2
+  figure(2);
+  clf();
+  hold on;
+  title('Classification de valeurs aleatoires');
+  ## Droite separatrice
+  plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
   for i = 1:size(tab)(2)
+    disp(tab(:,i));
     y = perceptron_simple(tab(:,i),w,active); 
     ## Point avec couleur en fonction de la classe
     plot(tab(1,i),tab(2,i),coul(sign(y)+2),'MarkerSize',20);
