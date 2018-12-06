@@ -28,7 +28,7 @@
 function [y] = multiperceptron (x,w1,w2)
   tabY = ones(1,size(w1)(1));
   for i = 1:size(w1)(1)
-     tabY(i) = perceptron_simple(x,w1(i,:),2);
+    tabY(i) = perceptron_simple(x,w1(i,:),2);
   endfor
   y = perceptron_simple(tabY, w2, 2);
 endfunction

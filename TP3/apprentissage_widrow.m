@@ -29,7 +29,6 @@ function [w] = apprentissage_widrow (x, yd)
     w(j) = rand(1);
   endfor
   compteurOk = 0;
-  coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
     y = perceptron_simple(x(:,i),w,1);
