@@ -25,8 +25,6 @@
 #yd => yd(i) indique la reponse desiree pour x(:,i). _ vecteur 1 ligne et n+1 ou n-1 colonnes 
 
 function [w]= apprentissage_simple (x,yd)
-  clf();
-  hold on;
   ## Les poids synaptiques sont initialisés aléatoirement
   w = zeros(1,3);
   for j = 1:3
