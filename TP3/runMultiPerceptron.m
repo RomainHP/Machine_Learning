@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} apprentissage_widrow (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} runMultiPerceptron (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -22,26 +22,9 @@
 ## Author: Romain <romain@Romain-PC>
 ## Created: 2018-11-30
 
-function [w] = apprentissage_widrow (x, yd, active)
-  ## Les poids synaptiques sont initialisés aléatoirement
-  w = zeros(1,3);
-  for j = 1:3
-    w(j) = rand(1);
-  endfor
-  compteurOk = 0;
-  ## On regarde pour chaque point si le programme trouve le bon resultat ou non
-  for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,active);
-    if (y==yd(:,i))
-      ## Bon resultat
-      compteurOk = compteurOk + 1;
-    else
-      ## Mauvais resultat
-      w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
-    endif
-  endfor
-  ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
-  if (compteurOk != size(x)(2))
-    w = apprentissage_widrow_bis(x, yd, active, w, 99);
-  endif
+function runMultiPerceptron()
+  x = [1 1];
+  w1 = [-0.5 2 1 ; 0.5 -1 0.5];
+  w2 = [2 -1 1];
+  disp(multiperceptron(x,w1,w2));
 endfunction

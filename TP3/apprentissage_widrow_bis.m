@@ -22,11 +22,11 @@
 ## Author: Romain <romain@Romain-PC>
 ## Created: 2018-11-30
 
-function [w] = apprentissage_widrow_bis (x, yd, w, cpt)
+function [w] = apprentissage_widrow_bis (x, yd, active, w, cpt)
   compteurOk = 0;
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,1);
+    y = perceptron_simple(x(:,i),w,active);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
@@ -37,6 +37,6 @@ function [w] = apprentissage_widrow_bis (x, yd, w, cpt)
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0
   if (compteurOk != size(x)(2) && cpt>0)
-    w = apprentissage_widrow_bis(x, yd, w, cpt-1);
+    w = apprentissage_widrow_bis(x, yd, active, w, cpt-1);
   endif
 endfunction

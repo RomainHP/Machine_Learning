@@ -14,34 +14,32 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} apprentissage_widrow (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} multiperceptron_widrow_bis (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Romain <romain@Romain-PC>
-## Created: 2018-11-30
+## Created: 2018-12-05
 
-function [w] = apprentissage_widrow (x, yd, active)
-  ## Les poids synaptiques sont initialisés aléatoirement
-  w = zeros(1,3);
-  for j = 1:3
-    w(j) = rand(1);
-  endfor
+function [w1, w2] = multiperceptron_widrow_bis (x, yd, w1, w2, cpt)
   compteurOk = 0;
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,active);
+    y = multiperceptron(x(:,i),w1,w2);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      # formule = diapo 34 du cours
+      w1(1,:) = w1(1,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
+      w1(2,:) = w1(2,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
+      w2 = w2 - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
     endif
   endfor
-  ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
-  if (compteurOk != size(x)(2))
-    w = apprentissage_widrow_bis(x, yd, active, w, 99);
+  ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0
+  if (compteurOk != size(x)(2) && cpt>0)
+    [w1, w2] = multiperceptron_widrow_bis(x, yd, w1, w2, cpt-1);
   endif
 endfunction
