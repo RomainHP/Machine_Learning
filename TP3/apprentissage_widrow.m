@@ -22,7 +22,7 @@
 ## Author: Romain <romain@Romain-PC>
 ## Created: 2018-11-30
 
-function [w] = apprentissage_widrow (x, yd)
+function [w] = apprentissage_widrow (x, yd, active)
   ## Les poids synaptiques sont initialisés aléatoirement
   w = zeros(1,3);
   for j = 1:3
@@ -31,7 +31,7 @@ function [w] = apprentissage_widrow (x, yd)
   compteurOk = 0;
   ## On regarde pour chaque point si le programme trouve le bon resultat ou non
   for i = 1:size(x)(2)
-    y = perceptron_simple(x(:,i),w,1);
+    y = perceptron_simple(x(:,i),w,active);
     if (y==yd(:,i))
       ## Bon resultat
       compteurOk = compteurOk + 1;
@@ -42,6 +42,6 @@ function [w] = apprentissage_widrow (x, yd)
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
   if (compteurOk != size(x)(2))
-    w = apprentissage_widrow_bis(x, yd, w, 99);
+    w = apprentissage_widrow_bis(x, yd, active, w, 99);
   endif
 endfunction

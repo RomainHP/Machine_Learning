@@ -33,7 +33,7 @@ function runApprentissageWidrow (x)
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   title('Apprentissage avec Widrow');
   ## Poids des synapses apres apprentissage
-  w = apprentissage_widrow(x, oracle);
+  w = apprentissage_widrow(x, oracle, active);
   ## Droite separatrice
   plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
   for i = 1:size(x)(2)
