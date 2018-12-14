@@ -25,6 +25,9 @@
 function [w] = apprentissage_widrow (x, yd, active)
   ## Les poids synaptiques sont initialisés aléatoirement
   w = zeros(1,3);
+  if (active==0)
+    return; ## error
+  endif
   for j = 1:3
     w(j) = rand(1);
   endfor
@@ -37,7 +40,11 @@ function [w] = apprentissage_widrow (x, yd, active)
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      if (active==1)
+        w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      else ## active = 2
+        w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
+      endif
     endif
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok

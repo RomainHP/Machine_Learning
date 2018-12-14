@@ -23,7 +23,7 @@
 ## Created: 2018-11-30
 
 function runMultiPerceptron()
-  x = [1 1];
+  x = [5 0];
   w1 = [-0.5 2 1 ; 0.5 -1 0.5];
   w2 = [2 -1 1];
   disp(multiperceptron(x,w1,w2));

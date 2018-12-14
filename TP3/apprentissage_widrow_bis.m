@@ -32,7 +32,11 @@ function [w] = apprentissage_widrow_bis (x, yd, active, w, cpt)
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      if (active==1)
+        w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      else ## active = 2
+        w = w - 0.1 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
+      endif
     endif
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0
