@@ -30,6 +30,7 @@ function runMultiperceptronWidrow ()
   hold on;
   oracle = [0 1 1 0];
   tab = [0 1 1 0 1 0 ; 0 0 1 1 0 0];
+  #tab = [rand(4,5) ; rand(4,5)];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   title('Apprentissage avec Widrow');
   ## Poids des synapses apres apprentissage
@@ -47,9 +48,12 @@ function runMultiperceptronWidrow ()
   hold on;
   title('Classification de valeurs aleatoires');
   ## Droite separatrice
-  ##plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
+  plot(x, (-w1(1,1)/w1(1,3))-(w1(1,2)/w1(1,3))*x);
+  plot(x, (-w1(2,1)/w1(2,3))-(w1(2,2)/w1(2,3))*x);
+  plot(x, (-w2(1)/w2(3))-(w2(2)/w2(3))*x);
   for i = 1:size(tab)(2)
     y = multiperceptron(tab(:,i),w1,w2);
+    disp(y);
     ## Point avec couleur en fonction de la classe
     plot(tab(1,i),tab(2,i),coul(sign(y)+2),'MarkerSize',20);
   endfor

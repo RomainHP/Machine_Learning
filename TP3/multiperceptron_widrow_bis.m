@@ -32,10 +32,15 @@ function [w1, w2] = multiperceptron_widrow_bis (x, yd, w1, w2, cpt)
       compteurOk = compteurOk + 1;
     else
       ## Mauvais resultat
-      # formule = diapo 34 du cours
-      w1(1,:) = w1(1,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
-      w1(2,:) = w1(2,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
-      w2 = w2 - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (y - y*y));
+      err = (yd(:,i) - y) * (y - y*y);
+      
+      y1 = perceptron_simple(x(:,i),w1(1,:),2);
+      w1(1,:) = w1(1,:) - 0.5 * ( (y1 - y1*y1) * (w2(2) * err) ) * [1 x(1,i) x(2,i)];
+      
+      y2 = perceptron_simple(x(:,i),w1(2,:),2);
+      w1(2,:) = w1(2,:) - 0.5 * ( (y2 - y2*y2) * (w2(3) * err) ) * [1 x(1,i) x(2,i)];
+      
+      w2 = w2 - 0.5 * (y - y*y) * [1 y1 y2];
     endif
   endfor
   ## Recursivite de l'algorithme si tous les resultats ne sont pas ok et cpt superieur a 0

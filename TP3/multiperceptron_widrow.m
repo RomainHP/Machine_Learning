@@ -35,22 +35,29 @@ function [w1, w2] = multiperceptron_widrow (x, yd)
     w2(j) = rand(1);
   endfor
   compteurOk = 0;
-  ## On regarde pour chaque point si le programme trouve le bon resultat ou non
-  for i = 1:size(x)(2)
-    y = multiperceptron(x(:,i),w1,w2);
-    if (y==yd(:,i))
-      ## Bon resultat
-      compteurOk = compteurOk + 1;
-    else
-      ## Mauvais resultat
-      # formule = diapo 34 du cours
-      w1(1,:) = w1(1,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
-      w1(2,:) = w1(2,:) - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
-      w2 = w2 - 0.5 * ( - (yd(:,i)-y) * [1 x(1,i) x(2,i)] * (1 - y*y));
-    endif
-  endfor
-  ## Recursivite de l'algorithme si tous les resultats ne sont pas ok
-  if (compteurOk != size(x)(2))
-    [w1, w2] = multiperceptron_widrow_bis(x, yd, w1, w2, 99);
-  endif
+  cpt = 0;
+  ## Boucle tant qu'il y a des erreurs ou qu'on a pas fait 5000 iterations
+  while (compteurOk!=size(x)(2) && cpt<5000)
+    compteurOk = 0;
+    cpt = cpt + 1;
+    ## On regarde pour chaque point si le programme trouve le bon resultat ou non
+    for i = 1:size(x)(2)
+      y = multiperceptron(x(:,i),w1,w2);
+      if (y==yd(:,i))
+        ## Bon resultat
+        compteurOk = compteurOk + 1;
+      else
+        ## Mauvais resultat
+        err = (yd(:,i) - y) * (y - y*y);
+        
+        y1 = perceptron_simple(x(:,i),w1(1,:),2);
+        w1(1,:) = w1(1,:) - 0.5 * ( (y1 - y1*y1) * (w2(2) * err) ) * [1 x(1,i) x(2,i)];
+        
+        y2 = perceptron_simple(x(:,i),w1(2,:),2);
+        w1(2,:) = w1(2,:) - 0.5 * ( (y2 - y2*y2) * (w2(3) * err) ) * [1 x(1,i) x(2,i)];
+        
+        w2 = w2 - 0.5 * (y - y*y) * [1 y1 y2];
+      endif
+    endfor
+  endwhile
 endfunction
