@@ -32,7 +32,7 @@ function  runApprentissageSimple (x)
   ylim([-2 2]);
   oracle = [ones(1,25)*(-1) ones(1,25)];
   active = 1;
-  tab = [rand(2,5)-1 ; rand(2,5)-1];
+  tab = [(rand(10)-0.5)*10.0 ; (rand(10)-0.5)*10.0];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   ##Â Poids des synapses apres apprentissage
     
@@ -40,7 +40,7 @@ function  runApprentissageSimple (x)
   ## Droite separatrice
   figure(2);
   clf();
-  title("Classification de valeurs aléatoires");
+  title("Classification de valeurs aleatoires");
   hold on;
   plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);
   for i = 1:size(tab)(2)   

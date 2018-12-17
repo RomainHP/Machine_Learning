@@ -26,15 +26,15 @@
 function runPerceptronLogique ()
   clf();
   hold on;
-  x = [0.0 0.0 1.0 1.0 0.5 0.4 0.3 0.7 0.8 0.5; 0.0 1.0 0.0 1.0 1.0 0.5 0.2 0.6 0.8 0.5];
+  x = [0.0 0.0 1.0 1.0 ; 0.0 1.0 0.0 1.0];
   w = [-0.5 1.0 1.0];
   active = 0;
   for i=1:size(x)(2) 
     res = perceptron_simple(x(:,i),w,active);
     if (res==-1)
-      plot(x(1,i),x(2,i),'rx');
+      plot(x(1,i),x(2,i),'rx','MarkerSize',20);
     else
-      plot(x(1,i),x(2,i),'bx');
+      plot(x(1,i),x(2,i),'bx','MarkerSize',20);
     endif
   endfor
   plot(x, (-w(1)/w(3))-(w(2)/w(3))*x);

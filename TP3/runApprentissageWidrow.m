@@ -29,7 +29,7 @@ function runApprentissageWidrow (x)
   hold on;
   oracle = [ones(1,25)*(-1) ones(1,25)];
   active = 1;
-  tab = [rand(4,5)-2 ; rand(4,5)-2];
+  tab = [(rand(10)-0.5)*10.0 ; (rand(10)-0.5)*10.0];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   title('Apprentissage avec Widrow');
   ## Poids des synapses apres apprentissage
