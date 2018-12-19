@@ -36,20 +36,23 @@ function [w1, w2] = multiperceptron_widrow (x, yd)
   endfor
   compteurOk = 0;
   cpt = 0;
+  e = zeros(5000);
   ## Boucle tant qu'il y a des erreurs ou qu'on a pas fait 5000 iterations
   while (compteurOk!=size(x)(2) && cpt<5000)
     compteurOk = 0;
     cpt = cpt + 1;
     ## On regarde pour chaque point si le programme trouve le bon resultat ou non
     for i = 1:size(x)(2)
+      ## Sortie du multiperceptron
       y = multiperceptron(x(:,i),w1,w2);
-      if (y==yd(:,i))
+      ## Calcul de l'erreur
+      err = (yd(:,i) - y) * (y - y*y);
+      e(cpt) += e(cpt) + (yd(:,i) - y)*(yd(:,i) - y);
+      if (y==yd(:,i) || err==0)
         ## Bon resultat
         compteurOk = compteurOk + 1;
       else
-        ## Mauvais resultat
-        err = (yd(:,i) - y) * (y - y*y);
-        
+        ## Mauvais resultat = recalcul des poids des neurones
         y1 = perceptron_simple(x(:,i),w1(1,:),2);
         w1(1,:) = w1(1,:) - 0.5 * ( (y1 - y1*y1) * (w2(2) * err) ) * [1 x(1,i) x(2,i)];
         
@@ -60,4 +63,9 @@ function [w1, w2] = multiperceptron_widrow (x, yd)
       endif
     endfor
   endwhile
+  var = zeros(5000);
+  for i = 1 : 5000
+    var(i) = i;
+  endfor
+  plot(var,e);
 endfunction
