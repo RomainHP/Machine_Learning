@@ -39,7 +39,7 @@ function runApprentissageWidrow (x)
   for i = 1:size(x)(2)
     y = perceptron_simple(x(:,i),w,active); 
     ## Point avec couleur en fonction de la classe
-    plot(x(1,i),x(2,i),coul(oracle(i)+2),'MarkerSize',20);
+    plot(x(1,i),x(2,i),coul(sign(y)+2),'MarkerSize',20);
   endfor
   ## FIGURE 2
   figure(2);

@@ -46,8 +46,7 @@ function [w1, w2] = multiperceptron_widrow (x, yd)
       ## Sortie du multiperceptron
       y = multiperceptron(x(:,i),w1,w2);
       ## Calcul de l'erreur
-      err = (yd(:,i) - y) * (y - y*y);
-      e(cpt) += e(cpt) + (yd(:,i) - y)*(yd(:,i) - y);
+      err = (yd(:,i) - y) * (-(y - y*y));
       if (y==yd(:,i) || err==0)
         ## Bon resultat
         compteurOk = compteurOk + 1;
@@ -59,13 +58,8 @@ function [w1, w2] = multiperceptron_widrow (x, yd)
         y2 = perceptron_simple(x(:,i),w1(2,:),2);
         w1(2,:) = w1(2,:) - 0.5 * ( (y2 - y2*y2) * (w2(3) * err) ) * [1 x(1,i) x(2,i)];
         
-        w2 = w2 - 0.5 * (y - y*y) * [1 y1 y2];
+        w2 = w2 - 0.5 * err * (y - y*y) * [1 y1 y2];
       endif
     endfor
   endwhile
-  var = zeros(5000);
-  for i = 1 : 5000
-    var(i) = i;
-  endfor
-  plot(var,e);
 endfunction
