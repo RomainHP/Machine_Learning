@@ -30,7 +30,6 @@ function runMultiperceptronWidrow ()
   hold on;
   oracle = [0 1 1 0];
   tab = [0 1 0 1; 0 0 1 1];
-  #tab = [rand(4,15) ; rand(4,15)];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   title('Apprentissage avec Widrow');
   ## Poids des synapses apres apprentissage
