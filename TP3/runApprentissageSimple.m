@@ -35,7 +35,6 @@ function  runApprentissageSimple (x)
   tab = [(rand(10)-0.5)*10.0 ; (rand(10)-0.5)*10.0];
   coul=['bx';'gx';'rx';'cx';'mx';'yx';'kx'];
   ## Poids des synapses apres apprentissage
-    
   w = apprentissage_simple(x, oracle);
   ## Droite separatrice
   figure(2);
