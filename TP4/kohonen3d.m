@@ -41,14 +41,14 @@ function [w] = kohonen3d(x,K,mu,sigma,nbiter)
     q = ones(1,3);  ## index du composant gagnant
     for j = 1:K
       for k = 1:K
-        for h = 1:K
-          d = norm(x(:,individuAuHasard) - [w(j,k,h,1) ; w(j,k,h,2) ; w(j,k,h,3)]);
+        for l = 1:K
+          d = norm(x(:,individuAuHasard) - [w(j,k,l,1) ; w(j,k,l,2) ; w(j,k,l,3)]);
           if (j==1 && k==1)
             dmin = d;
           else
             if (d < dmin)
               dmin = d;
-              q = [j k h];
+              q = [j k l];
             endif
           endif 
         endfor
@@ -56,12 +56,12 @@ function [w] = kohonen3d(x,K,mu,sigma,nbiter)
     endfor
     for j = 1:K
       for k = 1:K
-        for h = 1:K
-          d = norm(q - [j k h]);
+        for l = 1:K
+          d = norm(q - [j k l]);
           h = mut * exp(-(d*d)/(2*sigmat*sigmat));
-          w(j,k,h,1) = w(j,k,h,1) + h * (x(1,individuAuHasard) - w(j,k,h,1));
-          w(j,k,h,2) = w(j,k,h,2) + h * (x(2,individuAuHasard) - w(j,k,h,2));
-          w(j,k,h,3) = w(j,k,h,3) + h * (x(2,individuAuHasard) - w(j,k,h,3));
+          w(j,k,l,1) = w(j,k,l,1) + h * (x(1,individuAuHasard) - w(j,k,l,1));
+          w(j,k,l,2) = w(j,k,l,2) + h * (x(2,individuAuHasard) - w(j,k,l,2));
+          w(j,k,l,3) = w(j,k,l,3) + h * (x(2,individuAuHasard) - w(j,k,l,3));
         endfor
       endfor
     endfor
