@@ -32,7 +32,7 @@ function runKohonen3d ()
       ind = ind+1;
     endfor
   endfor
-  K = 3;
+  K = 10;
   mu = 0.5;
   sigma = 3;
   nbiter = 1000;

@@ -25,10 +25,10 @@
 function runKohonen2d ()
   load data.mat;
   x = xdisc;
-  K = 3;
+  K = 20;
   mu = 0.5;
   sigma = 3;
-  nbiter = 1000;
+  nbiter = 10000;
   w = kohonen2d(x,K,mu,sigma,nbiter);
   affiche_grille(w);
 endfunction

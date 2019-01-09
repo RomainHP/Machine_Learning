@@ -36,22 +36,19 @@ function [w] = kohonen2d(x,K,mu,sigma,nbiter)
   for i = 1:nbiter
     individuAuHasard = randi(N);
     q = ones(1,2);  ## index du composant gagnant
+    dmin = 10e8;
     for j = 1:K
       for k = 1:K
-        d = norm(x(:,individuAuHasard)-[w(j,k,1) w(j,k,2)]);
-        if ((j==1) && (k==1))
+        d = (x(1,individuAuHasard)-w(j,k,1))^2 + (x(2,individuAuHasard)-w(j,k,2))^2;
+        if (d < dmin)
           dmin = d;
-        else
-          if (d < dmin)
-            dmin = d;
-            q = [j k];
-          endif
+          q = [j k];
         endif 
       endfor
     endfor
     for j = 1:K
       for k = 1:K
-        d = norm(q-[j k]);
+        d = (q(1)-j)^2 + (q(2)-k)^2;
         h = mut * exp(-(d*d)/(2*sigmat*sigmat));
         w(j,k,1) = w(j,k,1) + h * (x(1,individuAuHasard) - w(j,k,1));
         w(j,k,2) = w(j,k,2) + h * (x(2,individuAuHasard) - w(j,k,2));
