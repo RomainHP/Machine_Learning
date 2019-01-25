@@ -32,10 +32,32 @@ function runKohonen3d ()
       ind = ind+1;
     endfor
   endfor
-  K = 10;
+  
+  K = 8;
   mu = 0.5;
   sigma = 3;
-  nbiter = 1000;
+  nbiter = 10;
   w = kohonen3d(x,K,mu,sigma,nbiter);
-  affiche_grille(w);
+  
+  img2=zeros(256,256,3);
+  ## Pour chaque pixel de l'image, on cherche le poids le plus proche
+  for b=1:256
+    for bb=1:256
+      q = ones(1,3);  ## index du composant gagnant
+      dmin = 10e8;
+      for j = 1:K
+        for k = 1:K
+          for l = 1:K
+            d = (img(b,bb,1)-w(j,k,l,1))^2 + (img(b,bb,2)-w(j,k,l,2))^2 + (img(b,bb,3)-w(j,k,l,3))^2;
+            if (d < dmin)
+              dmin = d;
+              q = [j k l];
+            endif
+          endfor
+        endfor
+      endfor
+      img2(b,bb,:) = w(q(1,1),q(1,2),q(1,3),:);
+    endfor
+  endfor
+  imshow (img2);
 endfunction
