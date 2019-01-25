@@ -36,7 +36,7 @@ function runKohonen3d ()
   K = 8;
   mu = 0.5;
   sigma = 3;
-  nbiter = 10;
+  nbiter = 100;
   w = kohonen3d(x,K,mu,sigma,nbiter);
   
   img2=zeros(256,256,3);
@@ -59,5 +59,5 @@ function runKohonen3d ()
       img2(b,bb,:) = w(q(1,1),q(1,2),q(1,3),:);
     endfor
   endfor
-  imshow (img2);
+  imshow(img2);
 endfunction

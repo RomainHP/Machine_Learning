@@ -28,9 +28,9 @@ function [w] = kohonen3d(x,K,mu,sigma,nbiter)
   for i = 1:K
     for j = 1:K
       for k = 1:K
-        w(i,j,k,1) = rand(1);
-        w(i,j,k,2) = rand(1);
-        w(i,j,k,3) = rand(1);
+        w(i,j,k,1) = rand(1)*255;
+        w(i,j,k,2) = rand(1)*255;
+        w(i,j,k,3) = rand(1)*255;
       endfor
     endfor
   endfor
