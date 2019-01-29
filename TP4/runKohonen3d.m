@@ -56,7 +56,9 @@ function runKohonen3d ()
           endfor
         endfor
       endfor
-      img2(b,bb,:) = w(q(1,1),q(1,2),q(1,3),:);
+      img2(b,bb,1) = floor(w(q(1,1),q(1,2),q(1,3),1));
+      img2(b,bb,2) = floor(w(q(1,1),q(1,2),q(1,3),2));
+      img2(b,bb,3) = floor(w(q(1,1),q(1,2),q(1,3),3));
     endfor
   endfor
   imshow(img2);
