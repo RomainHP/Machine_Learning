@@ -41,9 +41,9 @@ function [class] = classification (x, test, oracle, nbClass, k)
   #index indique comment ont ete rearrange les valeurs
   
   #on va creer un nouveau tableau de classe avec les classes des k plus proches voisins
-  classNeighboor = zeros(k,dimTest(2));
+  classNeighboor = zeros(k,1);
   for l = 1:k   
-    classNeighboor(l,1) = oracle(index(l,1));
+    classNeighboor(l,1) = oracle(1,index(l,1));
   endfor
   
   #On va regarder sur les k plus proche voisins quelle classe est majoritaire
