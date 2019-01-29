@@ -23,22 +23,21 @@
 ## Created: 2019-01-29
 
 function [tab] = indexation (x, test, nb)
-  tab = zeros(nb);
+  tab = zeros(nb,1);
   dimTest = size(test);
-  dimX = size(x);
-  norm = zeros(dimTest(2));
+  norm = zeros(dimTest(2),1);
   
   #on remplit la matrice des distances
   for i = 1:dimTest(2)
-     for j = 1:dimX
-        norm(i) = norm(i) + (x(j)-test(i,j))^2;
+     for j = 1:dimTest(1)
+        norm(i,1) = norm(i,1) + (x(j,1)-test(j,i))^2;
      endfor
   endfor
   
   #on trie la matrice norm pour obtenir facilement les k plus proche voisins
-  [sortNorm,index] = sort(norm);
-  disp(index);
+  [sortNorm,index] = sort(norm(:,1));
+  
   for i = 1:nb
-    tab(i) = sortNorm(i);
+    tab(i,:) = index(i);
   endfor
 endfunction
